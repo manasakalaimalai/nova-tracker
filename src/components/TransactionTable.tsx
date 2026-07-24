@@ -31,7 +31,7 @@ interface TransactionTableProps {
   categories: Category[];
 }
 
-const TEAM_MEMBERS = ["Madhu", "Harshita", "Inchara"];
+const TEAM_MEMBERS = ["Manasa", "Harshita", "Inchara"];
 const PAYMENT_MODES = ["Cash", "UPI", "Bank Transfer", "Card", "Cheque", "Other"];
 
 function AddCategoryInline({
