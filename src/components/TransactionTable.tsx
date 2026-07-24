@@ -48,8 +48,7 @@ function AddCategoryInline({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function handleAdd() {
     if (!name.trim()) return;
     setLoading(true);
     setError("");
@@ -78,11 +77,12 @@ function AddCategoryInline({
   return (
     <div className="mt-2 p-3 bg-nova-background border border-nova-border rounded-lg">
       <p className="text-xs font-medium text-nova-text/50 mb-2">New category</p>
-      <form onSubmit={handleSubmit} className="flex items-center gap-2">
+      <div className="flex items-center gap-2">
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleAdd(); } }}
           placeholder="Category name"
           className="flex-1 px-2 py-1.5 text-xs bg-white border border-nova-border rounded focus:outline-none focus:border-nova-text/40"
           autoFocus
@@ -95,13 +95,14 @@ function AddCategoryInline({
           title="Pick color"
         />
         <button
-          type="submit"
+          type="button"
+          onClick={handleAdd}
           disabled={loading || !name.trim()}
           className="px-3 py-1.5 bg-nova-text text-nova-background text-xs rounded font-medium disabled:opacity-40"
         >
           {loading ? "..." : "Add"}
         </button>
-      </form>
+      </div>
       {error && <p className="text-xs text-nova-debit mt-1">{error}</p>}
     </div>
   );
